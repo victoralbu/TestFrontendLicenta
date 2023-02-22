@@ -46,10 +46,10 @@
            href="/login">Or
           sign in</a>
 
-        <a class=" select-none text-[#81A4B7] bg-transparent border border-solid border-[#81A4B7] hover:bg-[#81A4B7] hover:text-white active:[#81A4B7] font-bold uppercase text-sm px-3 py-3 rounded outline-none focus:outline-none ease-linear transition-all duration-150  active show"
+        <button class=" select-none text-[#81A4B7] bg-transparent border border-solid border-[#81A4B7] hover:bg-[#81A4B7] hover:text-white active:[#81A4B7] font-bold uppercase text-sm px-3 py-3 rounded outline-none focus:outline-none ease-linear transition-all duration-150  active show"
            href="#"
            @click.prevent="register">Register
-        </a>
+        </button>
 
       </div>
     </form>
@@ -86,6 +86,7 @@ export default {
   },
   methods: {
     async register() {
+      this.errorMessages = null;
       this.errorMessages = await register({
         'name': this.name,
         'email': this.email,

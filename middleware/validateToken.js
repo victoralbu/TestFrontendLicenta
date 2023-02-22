@@ -1,4 +1,4 @@
-import {getToken, storeCookie} from "~/services/storeToken";
+import {getToken, storeCookie} from "~/services/tokenStorage";
 
 export default defineNuxtRouteMiddleware((to, from) => {
     let validation = async function isTokenValid() {
@@ -21,13 +21,12 @@ export default defineNuxtRouteMiddleware((to, from) => {
                 if (response.status === 401) {
                     storeCookie().token = null;
                     return navigateTo('/login');
-
                 }
             },
         })
 
     }
 
-    validation();
+    // validation();
 
 });

@@ -1,4 +1,4 @@
-import {getToken} from "~/services/storeToken";
+import {getToken} from "~/services/tokenStorage";
 
 export default defineNuxtRouteMiddleware((to, from) => {
 

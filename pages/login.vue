@@ -11,7 +11,7 @@
            src="/assets/images/tools.svg" width="50"/>
 
       <h1 class="text-transparent bg-clip-text bg-gradient-to-tr from-blue-500 to-yellow-300 text-5xl pb-3 select-none font-medium">
-        Log in!</h1>
+        Sign In!</h1>
 
       <input id="email" v-model="email" autocomplete="email"
              class=" w-2/3 rounded-md bg-transparent border-[3px] border-gray-300 focus:border-[3px] focus:outline-0 focus:outline-offset-0 p-1 select-none text-gray-700 px-2"
@@ -32,10 +32,12 @@
            href="/register">Or
           register</a>
 
-        <a class=" select-none text-[#81A4B7] bg-transparent border border-solid border-[#81A4B7] hover:bg-[#81A4B7] hover:text-white active:[#81A4B7] font-bold uppercase text-sm px-3 py-3 rounded outline-none focus:outline-none ease-linear transition-all duration-150  active show"
-           href="#"
-           @click.prevent="login">Sign
-          in</a>
+        <button
+            class=" select-none text-[#81A4B7] bg-transparent border border-solid border-[#81A4B7] hover:bg-[#81A4B7] hover:text-white active:[#81A4B7] font-bold uppercase text-sm px-3 py-3 rounded outline-none focus:outline-none ease-linear transition-all duration-150  active show"
+            href="#"
+            @click.prevent="login">Sign
+          in
+        </button>
 
       </div>
 
@@ -44,17 +46,16 @@
   </section>
 
   <transition enter-active-class="transition duration-700" enter-from-class="opacity-0"
-              leave-active-class="transition duration-700"
-              leave-from-class="opacity-0">
+              leave-active-class="transition duration-700" leave-to-class="opacity-0">
 
-    <ul v-if="errorMessages" class="absolute top-3 right-3  -translate-x-1/2 left-1/2 sm:-translate-x-0 sm:left-auto">
+    <ul v-if="errorMessages && visible"
+        class="absolute top-3 right-3 -translate-x-1/2 left-1/2 sm:-translate-x-0 sm:left-auto">
       <li v-for="message in errorMessages"
           class="font-semibold text-gray-200 text-center select-none bg-indigo-400 py-2.5 px-3 rounded shadow-md m-2">
         {{ message }}
       </li>
     </ul>
   </transition>
-
 
 </template>
 
@@ -67,6 +68,7 @@ export default {
       email: '',
       password: '',
       errorMessages: '',
+      visible: '',
     }
   },
   methods: {
@@ -75,6 +77,10 @@ export default {
         'email': this.email,
         'password': this.password,
       })
+      this.visible = true;
+      setTimeout(() => {
+        this.visible = false
+      }, 2000)
     },
   }
 }
