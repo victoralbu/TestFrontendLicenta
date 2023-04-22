@@ -20,7 +20,7 @@
            name="level" type="radio" value="Medium">
     <label for="Medium">Medium</label>
     <br>
-    <input v-model="Medium"
+    <input v-model="level"
            class=""
            name="level" type="radio" value="Hard">
     <label for="Hard">Hard</label>
@@ -41,7 +41,7 @@
     <br>
     <input v-model="urgency"
            class=""
-           name="urgency" type="radio" value="Not Urgent">
+           name="urgency" type="radio" value="Urgent">
     <label for="urgency">Urgent</label>
     <br>
     <input v-model="urgency"

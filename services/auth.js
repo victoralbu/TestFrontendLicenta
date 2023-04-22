@@ -7,7 +7,7 @@ export async function register(payload) {
     let apiUrl = config.API_URL;
 
     let {data: data, error: errors} = await useFetch(`${apiUrl}/auth/register`, {
-        method: 'POST', body: payload, credentials: 'same-origin'
+        method: 'POST', body: payload
     })
 
     let arrayOfErrors = formatErrors(errors);
@@ -32,6 +32,7 @@ export async function login(payload) {
     if (arrayOfErrors) return arrayOfErrors;
 
     storeCookie().token = data.value.access_token;
+
     navigateTo('/');
 }
 

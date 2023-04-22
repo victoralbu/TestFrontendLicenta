@@ -27,6 +27,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
     }
 
-    // validation();
+    validation();
 
 });

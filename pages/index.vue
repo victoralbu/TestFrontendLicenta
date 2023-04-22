@@ -1,14 +1,15 @@
 <template>
-  <div class="wrapper w-full bg-gradient-to-tr from-[#ffd89b] to-[#19547b] ">
+  <div class="wrapper w-full bg-gradient-to-tr from-[#ffd89b] to-[#19547b] min-h-screen h-screen max-h-screen">
 
     <Nav/>
     <Post class="mt-14 select-none" draggable="false"/>
 
-
-<!--  <a class=" bg-transparent absolute rotate-45 bottom-3 right-3 rounded md:bottom-8 md:right-8  bg-white/[0.9] w-[50px] h-[50px] z-10 select-none shadow-md md:w-[100px] md:h-[100px] "-->
-<!--     draggable="false" href="/post"><img alt="plus"-->
-<!--                                         class="w-[50px] md:w-[100px] rotate-45 select-none"-->
-<!--                                         draggable="false" src="/assets/images/plus.svg"></a>-->
+    <a class=" bg-transparent fixed rotate-45 bottom-8 right-3 rounded md:bottom-8 md:right-8  bg-white/[0.9] w-[50px] h-[50px] z-10 select-none shadow-md md:w-[100px] md:h-[100px] "
+       draggable="false"
+       href="/post" style="-webkit-tap-highlight-color: transparent !important;outline: none !important;">
+      <img alt="plus"
+           class="w-[50px] md:w-[100px] rotate-45 select-none"
+           draggable="false" src="/assets/icons/plus.svg"></a>
 
   </div>
 </template>
@@ -37,7 +38,6 @@ definePageMeta({
   middleware: ['auth', 'validate-token']
 })
 
-
 </script>
 
 <style>
@@ -51,4 +51,7 @@ body {
   position: fixed;
 }
 
+a:active {
+  background-color: rgba(128, 128, 128, 0.27);
+}
 </style>
