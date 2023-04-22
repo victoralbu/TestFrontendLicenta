@@ -9,7 +9,7 @@
           method="POST">
 
       <img alt="tools" class="opacity-80" draggable="false" height="50"
-           src="/assets/images/tools.svg" width="50"/>
+           src="/assets/icons/tools.svg" width="50"/>
 
       <h1 class="text-transparent bg-clip-text bg-gradient-to-tr from-blue-500 to-yellow-300 text-5xl pb-3 select-none font-medium">
         Register!</h1>
@@ -56,16 +56,15 @@
   </section>
 
   <transition enter-active-class="transition duration-700" enter-from-class="opacity-0"
-              leave-active-class="transition duration-700"
-              leave-from-class="opacity-0">
+              leave-active-class="transition duration-700" leave-to-class="opacity-0">
 
-    <ul v-if="errorMessages" class="absolute top-3 right-3  -translate-x-1/2 left-1/2 sm:-translate-x-0 sm:left-auto">
+    <ul v-if="errorMessages && visible"
+        class="absolute top-3 right-3 -translate-x-1/2 left-1/2 sm:-translate-x-0 sm:left-auto">
       <li v-for="message in errorMessages"
           class="font-semibold text-gray-200 text-center select-none bg-indigo-400 py-2.5 px-3 rounded shadow-md m-2">
         {{ message }}
       </li>
     </ul>
-
   </transition>
 
 </template>
@@ -82,11 +81,11 @@ export default {
       password: '',
       password_confirmation: '',
       errorMessages: '',
+      visible: '',
     }
   },
   methods: {
     async register() {
-      this.errorMessages = null;
       this.errorMessages = await register({
         'name': this.name,
         'email': this.email,
@@ -94,6 +93,10 @@ export default {
         'password': this.password,
         'password_confirmation': this.password_confirmation,
       })
+      this.visible = true;
+      setTimeout(() => {
+        this.visible = false
+      }, 2000)
     }
   },
 }

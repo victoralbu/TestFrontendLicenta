@@ -2,12 +2,14 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev -p 3001",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "server": "nuxt dev"
   },
   "devDependencies": {
+    "@nuxt/image-edge": "^1.0.0-27968280.9739e4d",
     "@nuxtjs/tailwindcss": "^6.3.1",
     "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
     "nuxt": "^3.1.2"
@@ -18,6 +20,7 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.6",
     "pinia": "^2.0.30",
-    "pinia-plugin-persistedstate": "^3.0.2"
+    "pinia-plugin-persistedstate": "^3.0.2",
+    "swiper": "^9.2.3"
   }
 }

@@ -1,6 +1,6 @@
 import {getToken} from "~/services/tokenStorage";
 
-export async function getPosts() {
+export async function getPosts(posts) {
     let config = useRuntimeConfig()
 
     let apiUrl = config.API_URL;
@@ -11,6 +11,9 @@ export async function getPosts() {
             'Accept': 'application/json',
             'Authorization': `Bearer ${getToken()}`,
         },
+        params: {
+            'lastPost': posts
+        }
     })
 
     return data.value;

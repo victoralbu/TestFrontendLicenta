@@ -8,7 +8,7 @@
           method="POST">
 
       <img alt="tools" class="opacity-80" draggable="false" height="50"
-           src="/assets/images/tools.svg" width="50"/>
+           src="/assets/icons/tools.svg" width="50"/>
 
       <h1 class="text-transparent bg-clip-text bg-gradient-to-tr from-blue-500 to-yellow-300 text-5xl pb-3 select-none font-medium">
         Sign In!</h1>
