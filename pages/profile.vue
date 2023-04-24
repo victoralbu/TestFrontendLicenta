@@ -7,20 +7,20 @@
   <h1>{{ data.ratings_nr }}</h1>
 </template>
 
-<script>
+<script setup>
 import {getUser} from "~/services/getUser";
+import {useDataStore} from "~/services/dataStorage";
 
-export default {
-  name: "Profile",
-  data() {
-    return {
-      data: [],
-    }
-  },
-  async created() {
-    this.data = await getUser()
-  },
-}
+let data;
+
+console.log(useDataStore().location)
+
+data = await getUser();
+
+definePageMeta({
+  middleware: ['auth', 'validate-token']
+})
+
 </script>
 
 <style>

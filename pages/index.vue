@@ -14,25 +14,24 @@
   </div>
 </template>
 
-<script>
-export default {
+<script setup>
+import Nav from "~/components/Nav.vue";
 
-  mounted() {
-    document.ondblclick = function (e) {
-      e.preventDefault();
-    }
-    window.addEventListener(
-        "touchmove",
-        function (event) {
-          if (event.scale !== 1) {
-            event.preventDefault();
-            event.stopImmediatePropagation();
-          }
-        },
-        {passive: false}
-    );
+onMounted(() => {
+  document.ondblclick = function (e) {
+    e.preventDefault();
   }
-}
+  window.addEventListener(
+      "touchmove",
+      function (event) {
+        if (event.scale !== 1) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        }
+      },
+      {passive: false}
+  );
+})
 
 definePageMeta({
   middleware: ['auth', 'validate-token']

@@ -1,14 +1,15 @@
 <template>
-  <div class="bg-cyan-900 top-0 m-0 w-full h-14 grid grid-cols-5 content-center absolute z-[11] absolute">
-    <a></a>
-    <a></a>
+  <div class="bg-cyan-900 top-0 m-0 w-full h-14 grid grid-cols-3 content-center absolute z-[11] absolute select-none"
+       draggable="false">
+    <div class="flex flex-col justify-center">
+      <div id="location" class="pl-1 md:text-center  text-xl text-white font-bold">{{ location }}</div>
+    </div>
     <h1 class="justify-self-center font-bold text-3xl md:text-5xl text-[#439BB6] flex items-center select-none"
         draggable="false">WorkerAPP</h1>
-    <a></a>
-    <a class="cursor-pointer justify-self-end flex items-center select-none" draggable="false"
-       @click.prevent="show = !show">
+    <div class="cursor-pointer justify-self-end flex items-center select-none" draggable="false"
+         @click.prevent="show = !show">
       <img alt="menu" class="select-none w-[50px] md:w-[60px] md:mr-12" draggable="false" src="/assets/icons/menu.svg">
-    </a>
+    </div>
   </div>
   <transition enter-active-class="transition duration-700" enter-from-class="opacity-0"
               leave-active-class="transition duration-700" leave-to-class="opacity-0">
@@ -19,24 +20,13 @@
   </transition>
 </template>
 
-<script>
-import {logout} from "~/services/auth";
+<script setup>
+import {ref} from 'vue'
+import {useDataStore} from "~/services/dataStorage";
 
-export default {
-  name   : "Nav",
-  methods: {
-    logout,
-    openMenu() {
-      let menuElement = document.getElementById('menu')
-      menuElement.classList.contains('hidden') ? menuElement.classList.remove('hidden') : menuElement.classList.add('hidden')
-    }
-  },
-  data() {
-    return {
-      show: false
-    }
-  }
-}
+let show = ref(false);
+
+let location = useDataStore().location
 
 </script>
 

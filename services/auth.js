@@ -1,5 +1,6 @@
 import {storeCookie} from "~/services/tokenStorage";
 import {formatErrors} from "/services/formatErrors"
+import {loadLocation} from "~/services/loadData";
 
 export async function register(payload) {
     let config = useRuntimeConfig()
@@ -15,6 +16,9 @@ export async function register(payload) {
     if (arrayOfErrors) return arrayOfErrors;
 
     storeCookie().token = data.value.access_token;
+
+    await loadLocation()
+
     navigateTo('/');
 }
 
@@ -32,6 +36,8 @@ export async function login(payload) {
     if (arrayOfErrors) return arrayOfErrors;
 
     storeCookie().token = data.value.access_token;
+
+    await loadLocation()
 
     navigateTo('/');
 }
