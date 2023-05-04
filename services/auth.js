@@ -1,6 +1,4 @@
-import {storeCookie} from "~/services/tokenStorage";
 import {formatErrors} from "/services/formatErrors"
-import {loadLocation} from "~/services/loadData";
 
 export async function register(payload) {
     let config = useRuntimeConfig()
@@ -8,16 +6,14 @@ export async function register(payload) {
     let apiUrl = config.API_URL;
 
     let {data: data, error: errors} = await useFetch(`${apiUrl}/auth/register`, {
-        method: 'POST', body: payload
+        method: 'POST', body: payload, credentials: 'include',
     })
 
     let arrayOfErrors = formatErrors(errors);
 
     if (arrayOfErrors) return arrayOfErrors;
 
-    storeCookie().token = data.value.access_token;
-
-    await loadLocation()
+    localStorage.setItem('authed','true')
 
     navigateTo('/');
 }
@@ -28,16 +24,14 @@ export async function login(payload) {
     let apiUrl = config.API_URL;
 
     let {data: data, error: errors} = await useFetch(`${apiUrl}/auth/token`, {
-        method: 'POST', body: payload
+        method: 'POST', body: payload, credentials: 'include',
     })
 
     let arrayOfErrors = formatErrors(errors);
 
     if (arrayOfErrors) return arrayOfErrors;
 
-    storeCookie().token = data.value.access_token;
-
-    await loadLocation()
+    localStorage.setItem('authed','true')
 
     navigateTo('/');
 }

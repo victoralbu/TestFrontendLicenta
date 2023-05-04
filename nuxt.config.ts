@@ -1,11 +1,11 @@
 export default defineNuxtConfig({
+    ssr: false,
     runtimeConfig: {
         API_URL: process.env.API_URL,
         public: {
             API_URL: process.env.API_URL,
         },
     },
-
     image: {
         // The screen sizes predefined by `@nuxt/image`:
         screens: {
@@ -18,7 +18,11 @@ export default defineNuxtConfig({
             '2xl': 1536
         },
     },
-
+    app: {
+        head: {
+            title: "Worker's",
+        }
+    },
 
     // builder: 'webpack',
 

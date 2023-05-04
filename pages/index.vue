@@ -16,11 +16,16 @@
 
 <script setup>
 import Nav from "~/components/Nav.vue";
+import {loadLocation, loadUserInfo} from "~/services/loadData";
+
+await loadLocation()
+await loadUserInfo()
 
 onMounted(() => {
   document.ondblclick = function (e) {
     e.preventDefault();
   }
+
   window.addEventListener(
       "touchmove",
       function (event) {
@@ -34,7 +39,7 @@ onMounted(() => {
 })
 
 definePageMeta({
-  middleware: ['auth', 'validate-token']
+  middleware: ['validate-token']
 })
 
 </script>

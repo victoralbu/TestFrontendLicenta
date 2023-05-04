@@ -60,24 +60,25 @@
 </template>
 
 <script>
+
 import {login} from "~/services/auth";
 
 export default {
   data() {
     return {
-      email: '',
-      password: '',
+      email        : '',
+      password     : '',
       errorMessages: '',
-      visible: '',
+      visible      : '',
     }
   },
   methods: {
     async login() {
       this.errorMessages = await login({
-        'email': this.email,
+        'email'   : this.email,
         'password': this.password,
       })
-      this.visible = true;
+      this.visible       = true;
       setTimeout(() => {
         this.visible = false
       }, 2000)
@@ -87,7 +88,7 @@ export default {
 
 
 definePageMeta({
-  middleware: ['auth']
+  middleware: ['validate-token','no-auth']
 })
 
 </script>
