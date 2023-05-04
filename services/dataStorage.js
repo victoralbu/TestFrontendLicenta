@@ -14,5 +14,7 @@ export const useDataStore = defineStore('data', () => {
 
     return {location, name, email, phone_number, jobs_done, rating, ratings_nr}
 }, {
-    persist: true,
+    persist: {
+        storage: persistedState.localStorage,
+    }
 })

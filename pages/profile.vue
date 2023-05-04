@@ -8,17 +8,17 @@
 </template>
 
 <script setup>
-import {getUser} from "~/services/getUser";
 import {useDataStore} from "~/services/dataStorage";
+import {loadUserInfo} from "~/services/loadData";
+
+await loadUserInfo()
 
 let data;
 
-console.log(useDataStore().location)
-
-data = await getUser();
+data = useDataStore();
 
 definePageMeta({
-  middleware: ['auth', 'validate-token']
+  middleware: ['validate-token']
 })
 
 </script>

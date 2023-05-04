@@ -16,10 +16,9 @@
 
 <script setup>
 import Nav from "~/components/Nav.vue";
-import {loadLocation, loadUserInfo} from "~/services/loadData";
+import {loadLocation} from "~/services/loadData";
 
 await loadLocation()
-await loadUserInfo()
 
 onMounted(() => {
   document.ondblclick = function (e) {

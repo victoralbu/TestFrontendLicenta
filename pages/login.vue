@@ -78,7 +78,9 @@ export default {
         'email'   : this.email,
         'password': this.password,
       })
-      this.visible       = true;
+
+      this.visible = true;
+
       setTimeout(() => {
         this.visible = false
       }, 2000)
@@ -88,7 +90,7 @@ export default {
 
 
 definePageMeta({
-  middleware: ['validate-token','no-auth']
+  middleware: ['validate-token', 'no-auth']
 })
 
 </script>

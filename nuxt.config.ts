@@ -24,8 +24,6 @@ export default defineNuxtConfig({
         }
     },
 
-    // builder: 'webpack',
-
     modules: [
         '@nuxtjs/tailwindcss',
         [

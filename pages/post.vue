@@ -89,7 +89,7 @@ export default {
 }
 
 definePageMeta({
-  middleware: ['auth', 'validate-token']
+  middleware: ['validate-token']
 })
 </script>
 

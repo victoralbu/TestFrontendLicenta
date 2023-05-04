@@ -1,4 +1,3 @@
-import {getToken} from "~/services/tokenStorage";
 import {formatErrors} from "~/services/formatErrors";
 
 export async function createPost(payload) {
@@ -20,17 +19,15 @@ export async function createPost(payload) {
     }
 
     let {data: data, error: errors} = await useFetch(`${apiUrl}/jobs`, {
-        method: 'POST',
+        method : 'POST', credentials: 'include',
         headers: {
-        //     'Content-Type': ['application/json', 'multipart/form-data'],
-        //     'Accept': ['application/json'],
-            'Authorization': `Bearer ${getToken()}`,
+            //     'Content-Type': ['application/json', 'multipart/form-data'],
+            //     'Accept': ['application/json'],
+            //     'Authorization': `Bearer ${getToken()}`,
         },
-        body: formData
+        body   : formData
     })
 
     let arrayOfErrors = formatErrors(errors);
 
-    console.log(data)
-    console.log(arrayOfErrors)
 }

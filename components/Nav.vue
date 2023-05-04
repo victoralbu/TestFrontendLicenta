@@ -23,6 +23,9 @@
 <script setup>
 import {ref} from 'vue'
 import {useDataStore} from "~/services/dataStorage";
+import {loadUserInfo} from "~/services/loadData";
+
+await loadUserInfo()
 
 let show = ref(false);
 
