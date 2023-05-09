@@ -30,7 +30,7 @@
           <div class="flex justify-between mx-3 my-2 items-center">
 
             <p class="text-left leading-tight w-2/3 text-gray-700 font-medium">{{ job.description }}</p>
-            <a class=" bg-white w-1/5 p-3 text-center cursor-pointer align-middle rounded font-bold bg-cyan-800 text-gray-300"
+            <a class="bg-white w-1/5 p-3 text-center cursor-pointer align-middle rounded font-bold bg-cyan-800 text-gray-300"
                @click.prevent="bid">BID</a>
 
           </div>
@@ -71,13 +71,18 @@ export default {
     this.data = await getPosts()
   },
   methods: {
+    async refreshData() {
+      this.data = await getPosts();
+    },
     async onScroll({target: {scrollTop, clientHeight, scrollHeight}}) {
-      if (scrollTop + clientHeight <= scrollHeight) {
-        this.scrollCheckForIphone = 1
-      }
-      if (scrollTop + clientHeight >= scrollHeight && this.scrollCheckForIphone !== 0) {
-        this.scrollCheckForIphone = 0;
-        this.data.push(...await getPosts(this.data[this.data.length - 1].id))
+      if (this.data.length > 0) {
+        if (scrollTop + clientHeight <= scrollHeight) {
+          this.scrollCheckForIphone = 1
+        }
+        if (scrollTop + clientHeight >= scrollHeight && this.scrollCheckForIphone !== 0) {
+          this.scrollCheckForIphone = 0;
+          this.data.push(...await getPosts(this.data[this.data.length - 1].id))
+        }
       }
     },
   },

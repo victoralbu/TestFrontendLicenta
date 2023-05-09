@@ -3,7 +3,7 @@ import {defineStore} from "pinia";
 
 export const useDataStore = defineStore('data', () => {
 
-    let location     = ref()
+    let location     = ref('Enter a location')
     let name         = ref()
     let email        = ref()
     let phone_number = ref()

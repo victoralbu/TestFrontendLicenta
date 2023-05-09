@@ -21,8 +21,8 @@ export async function createPost(payload) {
     let {data: data, error: errors} = await useFetch(`${apiUrl}/jobs`, {
         method : 'POST', credentials: 'include',
         headers: {
-            //     'Content-Type': ['application/json', 'multipart/form-data'],
-            //     'Accept': ['application/json'],
+            // 'Content-Type': ['application/json', 'multipart/form-data'],
+            'Accept': ['application/json'],
             //     'Authorization': `Bearer ${getToken()}`,
         },
         body   : formData
