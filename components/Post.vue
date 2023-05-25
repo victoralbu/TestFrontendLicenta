@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import {getPosts} from "~/services/getPosts";
+import {getMyPosts, getPosts} from "~/services/getPosts";
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import {Navigation, Pagination} from "swiper";
 import 'swiper/css';
@@ -50,7 +50,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 export default {
-  name: "Post",
+  name : "Post",
+  props: {
+    myPosts: String
+  },
   setup() {
     return {
       modules: [Pagination, Navigation],
@@ -64,15 +67,21 @@ export default {
     return {
       easy                : false,
       data                : [],
-      scrollCheckForIphone: 1
+      scrollCheckForIphone: 1,
     }
   },
   async created() {
-    this.data = await getPosts()
+    if (this.myPosts === "1")
+      this.data = await getMyPosts();
+    else
+      this.data = await getPosts();
   },
   methods: {
     async refreshData() {
-      this.data = await getPosts();
+      if (this.myPosts === "1")
+        this.data = await getMyPosts();
+      else
+        this.data = await getPosts();
     },
     async onScroll({target: {scrollTop, clientHeight, scrollHeight}}) {
       if (this.data.length > 0) {
@@ -81,7 +90,10 @@ export default {
         }
         if (scrollTop + clientHeight >= scrollHeight && this.scrollCheckForIphone !== 0) {
           this.scrollCheckForIphone = 0;
-          this.data.push(...await getPosts(this.data[this.data.length - 1].id))
+          if (this.myPosts === "1")
+            this.data.push(...await getMyPosts(this.data[this.data.length - 1].id))
+          else
+            this.data.push(...await getPosts(this.data[this.data.length - 1].id))
         }
       }
     },

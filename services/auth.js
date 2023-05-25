@@ -1,9 +1,10 @@
 import {formatErrors} from "/services/formatErrors"
 
-export async function register(payload) {
-    let config = useRuntimeConfig()
+let config = useRuntimeConfig();
 
-    let apiUrl = config.API_URL;
+let apiUrl = config.API_URL;
+
+export async function register(payload) {
 
     let {data: data, error: errors} = await useFetch(`${apiUrl}/auth/register`, {
         method: 'POST', body: payload, credentials: 'include',
@@ -19,9 +20,6 @@ export async function register(payload) {
 }
 
 export async function login(payload) {
-    let config = useRuntimeConfig();
-
-    let apiUrl = config.API_URL;
 
     let {data: data, error: errors} = await useFetch(`${apiUrl}/auth/token`, {
         method: 'POST', body: payload, credentials: 'include',
@@ -36,8 +34,9 @@ export async function login(payload) {
     navigateTo('/');
 }
 
-export function logout() {
-    storeCookie().token = null;
-    navigateTo('/login');
+export async function forgotPassword(payload) {
+    useFetch(`${apiUrl}/auth/forgot-password`, {
+        method: 'POST', body: payload,
+    })
 }
 

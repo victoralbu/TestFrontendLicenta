@@ -6,7 +6,7 @@
     </div>
     <h1 class="justify-self-center font-bold text-3xl md:text-5xl text-[#439BB6] flex items-center select-none cursor-pointer"
         draggable="false"
-        @click.prevent="refresh">WorkerAPP</h1>
+        @click.prevent="refresh">{{title || 'WorkerApp'}}</h1>
     <div class="cursor-pointer justify-self-end flex items-center select-none" draggable="false"
          @click.prevent="show = !show">
       <img alt="menu" class="select-none w-[50px] md:w-[60px] md:mr-12" draggable="false" src="/assets/icons/menu.svg">
@@ -46,7 +46,7 @@ let show              = ref(false);
 
 await loadUserInfo();
 
-let props = defineProps(['refreshData'])
+let props = defineProps(['refreshData','title'])
 
 const loader = new Loader({
   apiKey   : "AIzaSyCRfsJ4SHrgKLZJI17qoej0JFoPZiR_O2s",

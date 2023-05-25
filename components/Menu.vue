@@ -4,15 +4,19 @@
     <div class="px-8 w-full min-h-full flex flex-col items-left gap-4 pt-9">
       <a href="/profile" class="font-bold text-3xl cursor-pointer">Profile</a>
       <h1 class="font-bold text-xl cursor-pointer">Groups</h1>
-      <h1 class="font-bold text-xl cursor-pointer">My posts</h1>
+      <a href="/posts" class="font-bold text-xl cursor-pointer">My posts</a>
       <h1 class="font-bold text-xl cursor-pointer">My bids</h1>
+      <h1 class="font-bold text-xl cursor-pointer" @click.prevent="logout()">Logout</h1>
     </div>
   </div>
 </template>
 
 <script>
+import {logout} from "~/services/logout";
+
 export default {
   name: "Menu",
+  methods: {logout},
 }
 </script>
 

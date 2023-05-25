@@ -1,5 +1,3 @@
-// import {getToken} from "~/services/tokenStorage";
-
 import {useDataStore} from "~/services/dataStorage";
 
 export async function getPosts(posts) {
@@ -18,6 +16,26 @@ export async function getPosts(posts) {
         params     : {
             'lastPost': posts,
             'city'    : useDataStore().location,
+        }
+    })
+
+    return data.value;
+}
+
+
+export async function getMyPosts(posts) {
+    let config = useRuntimeConfig()
+
+    let apiUrl = config.API_URL;
+
+    let {data: data, error: errors} = await useFetch(`${apiUrl}/myPosts`, {
+        credentials: 'include',
+        headers    : {
+            'Content-Type': 'application/json',
+            'Accept'      : 'application/json',
+        },
+        params     : {
+            'lastPost': posts,
         }
     })
 
