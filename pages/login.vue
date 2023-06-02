@@ -89,7 +89,7 @@ export default {
         this.visible = false
       }, 2000)
     },
-  }
+  },
 }
 
 definePageMeta({

@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center max-h-[100svh] pb-8">
     <div id="posts-container" class="flex flex-col w-full max-w-2xl">
-      <ul id="list" class="overflow-y-scroll" @scroll="onScroll">
+      <ul v-if="data.status !== 'Forbidden'" id="list" class="overflow-y-scroll" @scroll="onScroll">
 
         <li v-for="job in data"
             class="bg-gradient-to-tr from-yellow-100 to-blue-200 rounded-md p-1 shadow-md my-9 mx-2">
@@ -30,8 +30,8 @@
           <div class="flex justify-between mx-3 my-2 items-center">
 
             <p class="text-left leading-tight w-2/3 text-gray-700 font-medium">{{ job.description }}</p>
-            <a class="bg-white w-1/5 p-3 text-center cursor-pointer align-middle rounded font-bold bg-cyan-800 text-gray-300"
-               @click.prevent="bid">BID</a>
+            <a  class="bg-white w-1/5 p-3 text-center cursor-pointer align-middle rounded font-bold bg-cyan-800 text-gray-300"
+               @click.prevent="bid(job.id)">View</a>
 
           </div>
         </li>
@@ -42,12 +42,13 @@
 </template>
 
 <script>
-import {getMyPosts, getPosts} from "~/services/getPosts";
+import {getMyPosts, getPosts, getGroupPosts} from "~/services/getPosts";
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import {Navigation, Pagination} from "swiper";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import {useDataStore} from "~/services/dataStorage";
 
 export default {
   name : "Post",
@@ -73,13 +74,18 @@ export default {
   async created() {
     if (this.myPosts === "1")
       this.data = await getMyPosts();
+    else if (this.myPosts === "2")
+      this.data = await getGroupPosts(999999, this.$route.params.id)
     else
       this.data = await getPosts();
   },
   methods: {
+    useDataStore,
     async refreshData() {
       if (this.myPosts === "1")
         this.data = await getMyPosts();
+      else if (this.myPosts === "2")
+        this.data = await getGroupPosts(999999,this.$route.params.id);
       else
         this.data = await getPosts();
     },
@@ -92,11 +98,16 @@ export default {
           this.scrollCheckForIphone = 0;
           if (this.myPosts === "1")
             this.data.push(...await getMyPosts(this.data[this.data.length - 1].id))
+          else if (this.myPosts === "2")
+            this.data.push(...await getGroupPosts(this.data[this.data.length - 1].id), this.$route.params.id)
           else
             this.data.push(...await getPosts(this.data[this.data.length - 1].id))
         }
       }
     },
+    bid(id) {
+      navigateTo(`/bid/${id}`)
+    }
   },
 }
 

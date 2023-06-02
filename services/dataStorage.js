@@ -4,6 +4,7 @@ import {defineStore} from "pinia";
 export const useDataStore = defineStore('data', () => {
 
     let location     = ref('Enter a location')
+    let id           = ref()
     let name         = ref()
     let email        = ref()
     let phone_number = ref()
@@ -12,7 +13,7 @@ export const useDataStore = defineStore('data', () => {
     let ratings_nr   = ref()
 
 
-    return {location, name, email, phone_number, jobs_done, rating, ratings_nr}
+    return {location, id, name, email, phone_number, jobs_done, rating, ratings_nr}
 }, {
     persist: {
         storage: persistedState.localStorage,

@@ -1,17 +1,15 @@
 import {useDataStore} from "~/services/dataStorage";
 
+let config = useRuntimeConfig()
+
+let apiUrl = config.API_URL;
+
 export async function getPosts(posts) {
-    let config = useRuntimeConfig()
-
-    let apiUrl = config.API_URL;
-
     let {data: data, error: errors} = await useFetch(`${apiUrl}/jobs`, {
         credentials: 'include',
         headers    : {
             'Content-Type': 'application/json',
             'Accept'      : 'application/json',
-            // 'Authorization': `Bearer ${getToken()}`,
-            // 'X-CSRF-TOKEN': useCookie('XSRF-TOKEN')
         },
         params     : {
             'lastPost': posts,
@@ -24,10 +22,6 @@ export async function getPosts(posts) {
 
 
 export async function getMyPosts(posts) {
-    let config = useRuntimeConfig()
-
-    let apiUrl = config.API_URL;
-
     let {data: data, error: errors} = await useFetch(`${apiUrl}/myPosts`, {
         credentials: 'include',
         headers    : {
@@ -36,6 +30,22 @@ export async function getMyPosts(posts) {
         },
         params     : {
             'lastPost': posts,
+        }
+    })
+
+    return data.value;
+}
+
+export async function getGroupPosts(posts, group) {
+    let {data: data, error: errors} = await useFetch(`${apiUrl}/groupPosts`, {
+        credentials: 'include',
+        headers    : {
+            'Content-Type': 'application/json',
+            'Accept'      : 'application/json',
+        },
+        params     : {
+            'lastPost': posts,
+            'group': group,
         }
     })
 

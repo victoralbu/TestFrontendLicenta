@@ -134,6 +134,10 @@ function handleFileUpload(e) {
 }
 
 async function post() {
+  const queryString = window.location.search;
+
+  const urlParams = new URLSearchParams(queryString);
+
   await createPost({
     'title'      : title.value,
     'description': description.value,
@@ -141,7 +145,8 @@ async function post() {
     'city'       : city.value,
     'address'    : address.value,
     'urgency'    : urgency.value,
-    'images'     : images
+    'images'     : images,
+    'group_id'   : urlParams.get('group'),
   })
 }
 

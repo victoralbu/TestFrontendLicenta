@@ -13,6 +13,7 @@ export async function createPost(payload) {
     formData.append('city', payload.city)
     formData.append('address', payload.address)
     formData.append('urgency', payload.urgency)
+    formData.append('group_id', payload.group_id)
 
     for (let i = 0; i < payload.images.length; i++) {
         formData.append(`images${i}`, payload.images[i])
@@ -21,9 +22,7 @@ export async function createPost(payload) {
     let {data: data, error: errors} = await useFetch(`${apiUrl}/jobs`, {
         method : 'POST', credentials: 'include',
         headers: {
-            // 'Content-Type': ['application/json', 'multipart/form-data'],
             'Accept': ['application/json'],
-            //     'Authorization': `Bearer ${getToken()}`,
         },
         body   : formData
     })

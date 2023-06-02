@@ -4,7 +4,7 @@
     <div class="flex flex-col justify-center" @click.prevent="showLocationInput = !showLocationInput">
       <div id="location" class="pl-1 md:text-center text-xl text-white font-bold">{{ useDataStore().location }}</div>
     </div>
-    <h1 class="justify-self-center font-bold text-3xl md:text-5xl text-[#439BB6] flex items-center select-none cursor-pointer"
+    <h1 class="justify-self-center font-bold text-3xl md:text-4xl text-white flex items-center select-none cursor-pointer"
         draggable="false"
         @click.prevent="refresh">{{title || 'WorkerApp'}}</h1>
     <div class="cursor-pointer justify-self-end flex items-center select-none" draggable="false"
@@ -14,7 +14,7 @@
   </div>
   <transition enter-active-class="transition duration-700" enter-from-class="opacity-0"
               leave-active-class="transition duration-700" leave-to-class="opacity-0">
-    <div v-if="show || showLocationInput" class="absolute w-full min-h-screen bg-gray-600/[0.7] z-10"
+    <div v-if="show || showLocationInput" class="absolute w-full min-h-screen bg-gray-600/[0.7] z-10 fixed select-none" draggable="false"
          @click="show = false;showLocationInput = false"></div>
   </transition>
   <transition name="slide-fade">
