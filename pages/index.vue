@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper w-full bg-gradient-to-tr from-[#ffd89b] to-[#19547b] min-h-screen h-screen max-h-screen">
+  <div class="wrapper w-full  min-h-screen h-screen max-h-screen">
 
     <Nav :refreshData="refreshData"/>
     <Post v-if="useDataStore().location !== 'Enter a location'" ref="post"

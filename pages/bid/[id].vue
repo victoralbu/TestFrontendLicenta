@@ -53,9 +53,12 @@
         </div>
         <hr>
       </div>
-      <div class="basis-1/2 w-full flex-col justify-center overflow-y-scroll p-3 rounded">
+
+      <div id="container" class="basis-1/2 w-full flex-col justify-center overflow-y-scroll p-3 rounded">
         <ul class="m-2">
-          <li v-for="bid in bids" v-show="bids" class=" cursor-pointer bg-gray-100 p-2 m-2 rounded"
+          <li v-for="bid in bids" v-show="bids"
+              :class="{ 'bg-red-200': bid.status === 'Lost','bg-yellow-100': bid.status === 'In Progress','bg-green-300': bid.status === 'Won' }"
+              class=" cursor-pointer bg-gray-100 p-2 m-2 rounded"
               @click.prevent="openModal(bid); showBidderModal = !showBidderModal">
             <div class="w-full grid grid-cols-3 grid-rows-2 gap-3">
               <div class="h-12 bg-gray-600 flex justify-center items-center text-white rounded overflow-hidden ">
@@ -95,13 +98,18 @@
       </div>
     </div>
   </div>
+
   <div v-show="showBidderModal"
-       class="absolute flex flex-col align-middle items-center justify-center z-[12] md:w-[600px] md:px-0 w-11/12 min-h-[150px] max-h-screen-[150px] h-[250px] text-center left-0 right-0 m-auto top-16 bg-gray-200 rounded-md shadow-md gap-4 bg-gray-100 select-none p-3"
+       class="absolute flex flex-col align-middle items-center justify-center z-[12] md:w-[600px] md:px-0 w-11/12 min-h-[250px] max-h-[450px] h-[350px] text-center left-0 right-0 m-auto top-16 bg-gray-200 rounded-md shadow-md gap-4 bg-gray-100 select-none p-3"
        draggable="false">
 
     <div
         class="w-32 h-12 bg-gray-600 flex justify-center items-center text-white rounded overflow-hidden p-3 font-bold">
       {{ currentBidUser.name }}
+    </div>
+    <div class="">
+      <div class="p-2 text-center">Number of ratings: {{ currentBidUser.ratings_nr }}</div>
+      <div class="p-2 text-center">Rating: {{ currentBidUser.rating }}</div>
     </div>
 
     <div class="p-2 text-center">{{ currentBid.few_words }}</div>
@@ -123,7 +131,7 @@
 
   <div v-show="showBidModal"
        class="absolute flex flex-col align-middle items-center justify-center z-[12] md:w-[600px] md:px-0 w-11/12 min-h-[150px] max-h-screen-[150px] h-[350px] text-center left-0 right-0 m-auto top-16 bg-gray-200 rounded-md shadow-md gap-4 bg-gray-100 select-none p-3">
-    <input id="money" class="w-1/2 p-2 rounded" min="0" placeholder="Amount in LEI" step="any" type="number">
+    <input id="money" class="w-1/2 p-2 rounded" min="0" placeholder="Amount in Euro" step="any" type="number">
     <textarea id="few_words" class="w-2/3 p-2 rounded m-5" maxlength="500" placeholder="Few words"></textarea>
     <input id="datePicker" class="w-1/2 rounded" min="2023-01-01" type="date" value="2023-01-01">
     <div class="w-full flex justify-evenly">
@@ -142,7 +150,7 @@
   </div>
 
   <transition enter-active-class="transition duration-700" enter-from-class="opacity-0"
-              leave-active-class="transition duration-700" leave-to-class="opacity-0">
+              leave-active-class="transition duration-200" leave-to-class="opacity-0">
     <div v-if="showBidderModal || showBidModal"
          class="absolute w-full min-h-screen bg-gray-600/[0.7] z-10 fixed select-none" draggable="false"
          @click="showBidModal = false;showBidderModal = false"></div>
@@ -196,7 +204,7 @@ function bid() {
     'job_id'   : id,
     'money'    : document.getElementById('money').value || 0,
     'date'     : document.getElementById('datePicker').value,
-    'few_words': document.getElementById('few_words').value || 'None',
+    'few_words': document.getElementById('few_words').value || '-',
   }
   useFetch(`${apiUrl}/bids`, {
     method     : 'post',
@@ -218,6 +226,9 @@ function openModal(bid) {
 
 let post = ref(await getPost(id));
 let bids = ref(await getBids(id));
+
+if (post.value === null)
+  navigateTo('/')
 
 for (let bid of bids.value) {
   if (bid.user.id === useDataStore().id)

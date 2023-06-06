@@ -45,7 +45,7 @@ export async function getGroupPosts(posts, group) {
         },
         params     : {
             'lastPost': posts,
-            'group': group,
+            'group'   : group,
         }
     })
 
