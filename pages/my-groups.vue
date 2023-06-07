@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper w-full bg-gradient-to-tr from-[#ffd89b] to-[#19547b] min-h-screen h-screen max-h-screen">
+  <div class="wrapper w-full bg-gray-200 min-h-screen h-screen max-h-screen">
     <Nav title="/groups"/>
     <Group class="mt-14 " v-bind:groups="groups" draggable="false"/>
     <div class="flex justify-evenly absolute bottom-28 md:bottom-0 w-full mb-2">
