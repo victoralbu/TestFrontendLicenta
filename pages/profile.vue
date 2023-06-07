@@ -46,9 +46,9 @@
 
   <div v-show="showEditModal"
        class="absolute flex flex-col align-middle items-center justify-center z-[12] md:w-[600px] md:px-0 w-11/12 min-h-[150px] max-h-screen-[150px] h-[350px] text-center left-0 right-0 m-auto top-16 bg-gray-200 rounded-md shadow-md gap-4 bg-gray-100 select-none p-3">
-    <input id="name" class="w-3/4 sm:w-1/2 p-2 rounded" :value="useDataStore().name"  type="text">
-    <input id="email" class="w-3/4 sm:w-1/2 p-2 rounded" :value="useDataStore().email"  type="text">
-    <input id="phone_number" class="w-3/4 sm:w-1/2 p-2 rounded" :value="useDataStore().phone_number"  type="text">
+    <input id="name" class="w-3/4 sm:w-1/2 p-2 rounded" :value="useDataStore().name"  type="text" placeholder="Name">
+    <input id="email" class="w-3/4 sm:w-1/2 p-2 rounded" :value="useDataStore().email"  type="text" placeholder="Email">
+    <input id="phone_number" class="w-3/4 sm:w-1/2 p-2 rounded" :value="useDataStore().phone_number"  type="text" placeholder="Phone number">
     <div class="w-full flex justify-evenly">
       <div
           class="bg-gray-500 p-3 font-bold text-white rounded-md cursor-pointer text-gray-100 active:bg-gray-400 hover:text-gray-700"

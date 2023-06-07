@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-cyan-900 top-0 m-0 w-full h-14 grid grid-cols-3 content-center absolute z-[11] absolute select-none"
+  <div class="bg-gray-600 top-0 m-0 w-full h-14 grid grid-cols-3 content-center absolute z-[11] absolute select-none"
        draggable="false">
     <div class="flex flex-col justify-center" @click.prevent="showLocationInput = !showLocationInput">
       <div id="location" class="pl-1 md:text-center text-xl text-white font-bold">{{ useDataStore().location }}</div>

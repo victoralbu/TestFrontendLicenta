@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper w-full bg-gradient-to-tr from-[#ffd89b] to-[#19547b] min-h-screen h-screen max-h-screen">
+  <div class="wrapper w-full bg-gray-200 min-h-screen h-screen max-h-screen">
 
     <Nav title="/myPosts"></Nav>
     <Post class="mt-14 select-none" draggable="false" my-posts="1"></Post>
