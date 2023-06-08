@@ -30,7 +30,7 @@
           <div class="flex justify-between mx-3 my-2 items-center">
 
             <p class="text-left leading-tight w-2/3 text-gray-700 font-medium">{{ job.description }}</p>
-            <a  class="bg-white w-1/5 p-3 text-center cursor-pointer align-middle rounded font-bold bg-cyan-800 text-gray-300"
+            <a  class="bg-white w-1/5 p-3 text-center cursor-pointer align-middle rounded font-bold bg-cyan-800 text-gray-400"
                @click.prevent="bid(job.id)">View</a>
 
           </div>

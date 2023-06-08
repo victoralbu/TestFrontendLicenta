@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper w-full bg-gradient-to-tr min-h-screen h-screen max-h-screen select-none" draggable="false">
+  <div class="wrapper w-full bg-gray-50 min-h-screen h-screen max-h-screen select-none" draggable="false">
     <Nav title="/myJobs"/>
     <div class="mt-14 w-full h-full flex justify-center">
 

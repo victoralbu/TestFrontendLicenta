@@ -1,9 +1,9 @@
 <template>
-  <div class="wrapper w-full min-h-screen h-screen max-h-screen select-none" draggable="false">
+  <div class="wrapper w-full bg-gray-50 min-h-screen h-screen max-h-screen select-none" draggable="false">
 
     <Nav title="/profile"/>
     <div id="scrollable"
-         class="mt-14 md:w-1/2 p-4 text-2xl font-mono flex flex-col gap-3 overflow-y-scroll overflow-x-hidden">
+         class="mt-14 md:w-2/3 p-4 text-2xl font-mono flex flex-col gap-3 overflow-y-scroll overflow-x-hidden">
 
       <div class="grid grid-cols-2">
         <h1 class="">Name:</h1>

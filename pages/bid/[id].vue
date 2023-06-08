@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper w-full bg-gray-50 min-h-screen h-screen max-h-screen select-none" draggable="false">
-    <Nav></Nav>
+    <Nav title="/post/{id}"></Nav>
     <div v-show="post" class="mt-14 h-[80%] sm:h-[95%] w-full flex flex-col md:flex-row">
       <div id="container" class="basis-1/2 p-4 text-2xl font-mono flex flex-col gap-3 overflow-y-scroll">
         <div v-show="post.status === 'Bidding' && post.user.id !== useDataStore().id && showBidButton"
@@ -67,7 +67,7 @@
               <div class="flex ">
                 <div class="flex flex-col">
                   <h1 class="basis-1/4 text-slate-400">Price:</h1>
-                  <h1 class="basis-3/4">{{ bid.money }} Lei</h1>
+                  <h1 class="basis-3/4">{{ bid.money }} Euro</h1>
                 </div>
               </div>
               <div class="flex ">

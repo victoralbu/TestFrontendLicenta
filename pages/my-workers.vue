@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper w-full bg-gradient-to-tr min-h-screen h-screen max-h-screen select-none" draggable="false">
+  <div class="wrapper w-full bg-gray-50 min-h-screen h-screen max-h-screen select-none" draggable="false">
     <Nav title="/myWorkers"/>
     <div class="mt-14 w-full h-full flex justify-center">
 
@@ -10,7 +10,7 @@
             <h1 class="font-bold">{{ user.email }}</h1>
             <h1 class="font-bold">{{ user.phone_number }}</h1>
             <div class="w-full flex justify-evenly gap-3">
-              <div v-show="user.status !== 'Paid'"
+              <div v-show="user.status === 'Done'"
                    class="bg-gray-500 p-3 font-bold rounded-md cursor-pointer active:bg-gray-400 hover:text-gray-700 text-green-400"
                    @click.prevent="pay(user.amount, user.job_id)">Pay:
                 {{ user.amount }} Euro
@@ -118,6 +118,10 @@ if (status === 'Good') {
   useFetch(`${apiUrl}/jobs/paid`, {
     method     : 'post',
     credentials: 'include',
+    headers    : {
+      'Content-Type': 'application/json',
+      'Accept'      : 'application/json',
+    },
     body       : {
       'job_id': localStorage.getItem('current-job')
     },
@@ -132,6 +136,10 @@ function rate(id) {
   useFetch(`${apiUrl}/rate`, {
     method     : 'post',
     credentials: 'include',
+    headers    : {
+      'Content-Type': 'application/json',
+      'Accept'      : 'application/json',
+    },
     body       : {
       'user_id': id,
       'rate'   : document.getElementById('rate').value,
@@ -146,6 +154,10 @@ function report(id) {
   useFetch(`${apiUrl}/reports`, {
     method     : 'post',
     credentials: 'include',
+    headers    : {
+      'Content-Type': 'application/json',
+      'Accept'      : 'application/json',
+    },
     body       : {
       'culprit_id' : id,
       'description': document.getElementById('report-description').value,

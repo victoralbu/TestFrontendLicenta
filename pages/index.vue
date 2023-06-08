@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper w-full bg-gray-200 min-h-screen h-screen max-h-screen">
+  <div class="wrapper w-full bg-gray-100 min-h-screen h-screen max-h-screen">
 
     <Nav :refreshData="refreshData"/>
     <Post v-if="useDataStore().location !== 'Enter a location'" ref="post"
