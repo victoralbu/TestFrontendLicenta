@@ -78,6 +78,9 @@ export default {
       this.data = await getGroupPosts(999999, this.$route.params.id)
     else
       this.data = await getPosts();
+
+    if (this.data.status === 'Forbidden')
+      navigateTo('/');
   },
   methods: {
     useDataStore,
