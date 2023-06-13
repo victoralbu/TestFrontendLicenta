@@ -13,6 +13,7 @@ export async function createPost(payload) {
     formData.append('city', payload.city)
     formData.append('address', payload.address)
     formData.append('urgency', payload.urgency)
+    formData.append('budget', payload.budget)
     formData.append('group_id', payload.group_id)
 
     for (let i = 0; i < payload.images.length; i++) {

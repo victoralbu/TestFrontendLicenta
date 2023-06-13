@@ -4,7 +4,7 @@
       <ul v-if="data.status !== 'Forbidden'" id="list" class="overflow-y-scroll" @scroll="onScroll">
 
         <li v-for="job in data"
-            class="bg-gray-400 rounded-md p-1 shadow-md my-9 mx-2">
+            class="bg-gray-300 rounded-md p-1 shadow-md my-9 mx-2">
 
           <div class="flex justify-between mx-3 font-medium text-xl mt-1">
             <h2 class="text-left p-0.5 ">{{ job.title }} <span

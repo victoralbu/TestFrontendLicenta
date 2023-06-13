@@ -62,6 +62,10 @@
           <label for="urgency">Very urgent</label>
         </div>
         <br>
+        <input id="budget" v-model="budget"
+               class=" w-4/5 md:w-[300px] rounded-md bg-transparent border-[3px] border-gray-300 focus:border-[3px] focus:outline-0 focus:outline-offset-0 p-1 select-none text-gray-700 px-2"
+               name="budget" placeholder="Budget in Euro" type="number">
+        <br>
         <input id="image" ref="files" accept="image/*" multiple="multiple" type="file"
                @change="handleFileUpload($event)"/>
         <br>
@@ -88,6 +92,7 @@ let level       = ref();
 let city        = ref();
 let address     = ref();
 let urgency     = ref();
+let budget      = ref();
 let images      = ref(null);
 
 const loader = new Loader({
@@ -161,8 +166,9 @@ async function post() {
     'address'    : address.value,
     'urgency'    : urgency.value,
     'images'     : images,
+    'budget'     : budget.value,
     'group_id'   : urlParams.get('group'),
-  }).then(navigateTo('/'))
+  }).then()
 }
 
 definePageMeta({
