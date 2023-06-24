@@ -17,6 +17,7 @@ export async function loadUserInfo() {
             useDataStore().jobs_done    = data.jobs_done
             useDataStore().rating       = data.rating
             useDataStore().ratings_nr   = data.ratings_nr
+            useDataStore().verified     = data.verified
         }
 
     });

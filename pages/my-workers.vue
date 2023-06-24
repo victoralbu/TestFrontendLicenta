@@ -21,7 +21,7 @@
                   @click.prevent="navigateTo(`/bid/${user.job_id}`)">View
               </div>
 
-              <div v-show="user.status !== 'Done' || user.status !== 'Paid'"
+              <div v-if="user.canBeRated"
                    class="bg-gray-500 p-3 font-bold text-white rounded-md cursor-pointer text-gray-100 active:bg-gray-400 hover:text-gray-700 flex flex-col justify-center"
                    @click.prevent="currentUser = user;showRateModal = !showRateModal">Rate
               </div>
@@ -59,7 +59,7 @@
 
       <div
           class="bg-gray-400 p-3 font-bold text-white rounded-md cursor-pointer text-gray-100 active:bg-gray-400 hover:text-gray-700"
-          @click.prevent="rate(currentUser.id)">
+          @click.prevent="rate(currentUser.id, currentUser.job_id)">
         Rate
       </div>
     </div>
@@ -131,7 +131,7 @@ if (status === 'Good') {
   })
 }
 
-function rate(id) {
+function rate(id,jobId) {
 
   useFetch(`${apiUrl}/rate`, {
     method     : 'post',
@@ -142,6 +142,7 @@ function rate(id) {
     },
     body       : {
       'user_id': id,
+      'job_id': jobId,
       'rate'   : document.getElementById('rate').value,
     },
   }).then(() => {

@@ -12,7 +12,7 @@
       <hr>
       <div class="sm:grid sm:grid-cols-2">
         <h1 class="">Email:</h1>
-        <h1 class="editable text-cyan-900 font-bold">{{ useDataStore().email }}</h1>
+        <h1 class="editable text-red-400 font-bold" :class="{ '!text-green-400': useDataStore().verified}">{{ useDataStore().email }}</h1>
       </div>
       <hr>
       <div class="grid grid-cols-2">
