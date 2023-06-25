@@ -168,7 +168,9 @@ async function post() {
     'images'     : images,
     'budget'     : budget.value,
     'group_id'   : urlParams.get('group'),
-  }).then()
+  }).then(r=> {
+    window.location.reload();
+  })
 }
 
 definePageMeta({
