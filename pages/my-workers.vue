@@ -12,7 +12,7 @@
             <div class="w-full flex justify-evenly gap-3">
               <div v-show="user.status === 'Done'"
                    class="bg-gray-500 p-3 font-bold rounded-md cursor-pointer active:bg-gray-400 hover:text-gray-700 text-green-400"
-                   @click.prevent="pay(user.amount, user.job_id)">Pay:
+                   @click.prevent="pay(user.amount, user.job_id);loading=true">Pay:
                 {{ user.amount }} Euro
               </div>
 
@@ -91,6 +91,18 @@
     </div>
   </div>
 
+  <div v-if="loading" class="absolute w-full min-h-screen bg-gray-600/[0.7] z-10 fixed select-none" draggable="false"
+  ></div>
+
+  <div class="sk-chase absolute top-60 m-auto z-[11]" v-show="loading">
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+  </div>
+
 </template>
 
 <script setup>
@@ -114,6 +126,8 @@ let showReportModal = ref(false);
 
 let currentUser = ref('');
 
+let loading = ref(false);
+
 if (status === 'Good') {
   useFetch(`${apiUrl}/jobs/paid`, {
     method     : 'post',
@@ -131,8 +145,8 @@ if (status === 'Good') {
   })
 }
 
-function rate(id,jobId) {
-
+function rate(id, jobId) {
+  loading = true;
   useFetch(`${apiUrl}/rate`, {
     method     : 'post',
     credentials: 'include',
@@ -142,10 +156,11 @@ function rate(id,jobId) {
     },
     body       : {
       'user_id': id,
-      'job_id': jobId,
+      'job_id' : jobId,
       'rate'   : document.getElementById('rate').value,
     },
   }).then(() => {
+    loading= false;
     window.location.reload();
   })
 }
@@ -222,4 +237,100 @@ a:active {
 #scrollable::-webkit-scrollbar {
   display: none;
 }
+
+.sk-chase {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  animation: sk-chase 2.5s infinite linear both;
+}
+
+.sk-chase-dot {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation: sk-chase-dot 2.0s infinite ease-in-out both;
+}
+
+.sk-chase-dot:before {
+  content: '';
+  display: block;
+  width: 25%;
+  height: 25%;
+  background-color: #ffffff;
+  border-radius: 100%;
+  animation: sk-chase-dot-before 2.0s infinite ease-in-out both;
+}
+
+.sk-chase-dot:nth-child(1) {
+  animation-delay: -1.1s;
+}
+
+.sk-chase-dot:nth-child(2) {
+  animation-delay: -1.0s;
+}
+
+.sk-chase-dot:nth-child(3) {
+  animation-delay: -0.9s;
+}
+
+.sk-chase-dot:nth-child(4) {
+  animation-delay: -0.8s;
+}
+
+.sk-chase-dot:nth-child(5) {
+  animation-delay: -0.7s;
+}
+
+.sk-chase-dot:nth-child(6) {
+  animation-delay: -0.6s;
+}
+
+.sk-chase-dot:nth-child(1):before {
+  animation-delay: -1.1s;
+}
+
+.sk-chase-dot:nth-child(2):before {
+  animation-delay: -1.0s;
+}
+
+.sk-chase-dot:nth-child(3):before {
+  animation-delay: -0.9s;
+}
+
+.sk-chase-dot:nth-child(4):before {
+  animation-delay: -0.8s;
+}
+
+.sk-chase-dot:nth-child(5):before {
+  animation-delay: -0.7s;
+}
+
+.sk-chase-dot:nth-child(6):before {
+  animation-delay: -0.6s;
+}
+
+@keyframes sk-chase {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sk-chase-dot {
+  80%, 100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sk-chase-dot-before {
+  50% {
+    transform: scale(0.4);
+  }
+  100%, 0% {
+    transform: scale(1.0);
+  }
+}
+
 </style>

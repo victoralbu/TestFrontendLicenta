@@ -53,7 +53,18 @@
 
       </div>
     </form>
+    <div v-if="loading" class="absolute w-full min-h-screen bg-gray-600/[0.7] z-10 fixed select-none" draggable="false"
+    ><div class="sk-chase absolute top-64 z-[11] m-auto select-none" draggable="false" v-show="loading">
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+    </div></div>
+
   </section>
+
 
   <transition enter-active-class="transition duration-700" enter-from-class="opacity-0"
               leave-active-class="transition duration-700" leave-to-class="opacity-0">
@@ -82,10 +93,12 @@ export default {
       password_confirmation: '',
       errorMessages: '',
       visible: '',
+      loading: false,
     }
   },
   methods: {
     async register() {
+      this.loading = true;
       this.errorMessages = await register({
         'name': this.name,
         'email': this.email,
@@ -93,6 +106,7 @@ export default {
         'password': this.password,
         'password_confirmation': this.password_confirmation,
       })
+      this.loading = false;
       this.visible = true;
       setTimeout(() => {
         this.visible = false
@@ -108,5 +122,98 @@ definePageMeta({
 </script>
 
 <style>
+.sk-chase {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  animation: sk-chase 2.5s infinite linear both;
+}
 
+.sk-chase-dot {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation: sk-chase-dot 2.0s infinite ease-in-out both;
+}
+
+.sk-chase-dot:before {
+  content: '';
+  display: block;
+  width: 25%;
+  height: 25%;
+  background-color: #ffffff;
+  border-radius: 100%;
+  animation: sk-chase-dot-before 2.0s infinite ease-in-out both;
+}
+
+.sk-chase-dot:nth-child(1) {
+  animation-delay: -1.1s;
+}
+
+.sk-chase-dot:nth-child(2) {
+  animation-delay: -1.0s;
+}
+
+.sk-chase-dot:nth-child(3) {
+  animation-delay: -0.9s;
+}
+
+.sk-chase-dot:nth-child(4) {
+  animation-delay: -0.8s;
+}
+
+.sk-chase-dot:nth-child(5) {
+  animation-delay: -0.7s;
+}
+
+.sk-chase-dot:nth-child(6) {
+  animation-delay: -0.6s;
+}
+
+.sk-chase-dot:nth-child(1):before {
+  animation-delay: -1.1s;
+}
+
+.sk-chase-dot:nth-child(2):before {
+  animation-delay: -1.0s;
+}
+
+.sk-chase-dot:nth-child(3):before {
+  animation-delay: -0.9s;
+}
+
+.sk-chase-dot:nth-child(4):before {
+  animation-delay: -0.8s;
+}
+
+.sk-chase-dot:nth-child(5):before {
+  animation-delay: -0.7s;
+}
+
+.sk-chase-dot:nth-child(6):before {
+  animation-delay: -0.6s;
+}
+
+@keyframes sk-chase {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sk-chase-dot {
+  80%, 100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sk-chase-dot-before {
+  50% {
+    transform: scale(0.4);
+  }
+  100%, 0% {
+    transform: scale(1.0);
+  }
+}
 </style>

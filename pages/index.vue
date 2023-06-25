@@ -1,9 +1,15 @@
 <template>
-  <div class="wrapper w-full bg-gray-100 min-h-screen h-screen max-h-screen">
+  <div class="wrapper w-full bg-gray-100 min-h-screen h-screen max-h-screen select-none" draggable="false">
 
     <Nav :refreshData="refreshData"/>
     <Post v-if="useDataStore().location !== 'Enter a location'" ref="post"
           class="mt-14 select-none" draggable="false"/>
+    <div v-else-if="useDataStore().location === 'Enter a location'" class="mt-32 w-96 sm:w-[27rem] absolute m-auto left-0 right-0 bg-gray-600 p-5 rounded">
+      <p class="p-1 text-white text-center text-5xl font-mono font-bold">Welcome!</p>
+      <hr>
+      <br>
+      <p class="p-1 text-white text-center text-4xl font-mono">Please click on the <br><span class="text-green-400 text-3xl sm:text-4xl">"Enter a location"</span><br> button and select a city to see posts.</p>
+    </div>
 
     <a class=" bg-transparent fixed rotate-45 bottom-8 right-3 rounded md:bottom-8 md:right-8  bg-white/[0.9] w-[50px] h-[50px] z-10 select-none shadow-md md:w-[100px] md:h-[100px] "
        draggable="false"
