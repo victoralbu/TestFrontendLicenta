@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper w-full bg-gray-50 min-h-screen h-screen max-h-screen select-none" draggable="false">
     <Nav title="/myWorkers"/>
-    <div class="mt-14 w-full h-full flex justify-center">
+    <div class="mt-14 w-full h-[95%] flex justify-center">
 
       <ul id="scrollable" class="h-[77%] mt-2 sm:h-[95%] w-11/12 md:w-1/3 overflow-y-scroll rounded">
         <li v-for="user in workers" class="bg-gray-300 flex justify-center mb-2 rounded">
@@ -47,7 +47,7 @@
       {{ currentUser.name }}
     </div>
     <div class="">
-      <input id="rate" class="p-2 rounded min-w-[100px]" max="5" min="0" placeholder="Rating" step="1" type="number">
+      <input id="rate" class="p-2 rounded min-w-[120px]" max="5" min="0" placeholder="Rating 0-5" step="1" type="number">
     </div>
 
     <div class="w-full flex justify-evenly">
