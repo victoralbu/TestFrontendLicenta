@@ -2,7 +2,7 @@
   <div class="wrapper w-full min-h-screen h-screen max-h-screen select-none" draggable="false">
 
     <Nav title="/myBids"/>
-    <div class="mt-14 flex justify-center h-[78%] sm:h-[95%] rounded">
+    <div class="mt-14 flex justify-center h-[78%] sm:h-[93%] rounded">
       <ul id="scrollable" class="m-2 w-11/12 md:w-1/2 overflow-y-scroll rounded">
         <li v-for="bid in bids" v-show="bids"
             :class="{ 'bg-red-200': bid.status === 'Lost','bg-yellow-100': bid.status === 'In Progress','bg-green-300': bid.status === 'Won' }"

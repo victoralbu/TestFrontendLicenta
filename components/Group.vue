@@ -1,5 +1,5 @@
 <template>
-  <section class="max-h-[70svh] m-auto w-11/12 md:max-w-[600px] flex flex-col justify-center mt-14 select-text">
+  <section class="h-[70%] m-auto w-11/12 md:max-w-[600px] flex flex-col justify-center mt-14 select-text sm:h-[80%]">
     <ul id="list" class="overflow-y-scroll overflow-x-hidden rounded m-3 max-h-[90svh] ">
       <li v-for="group in groups"
           class="flex flex-col justify-center hover:bg-gray-600 bg-gray-500 rounded drop-shadow-md md:max-w-[600px] mb-3 p-3"
